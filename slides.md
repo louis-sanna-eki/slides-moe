@@ -1,16 +1,15 @@
 ---
-# You can also start simply with 'default'
+# Optional: You can change the theme
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
+background: https://images.unsplash.com/photo-1548913344-66177da9425e
 # some information about your slides (markdown enabled)
-title: Welcome to Slidev
+title: Mixture of Experts (MoE)
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+  ## Introduction to Mixture of Experts
+  Understanding Conditional Computation in Deep Learning
 
-  Learn more at [Sli.dev](https://sli.dev)
 # apply unocss classes to the current slide
 class: text-center
 # https://sli.dev/features/drawing
@@ -22,26 +21,47 @@ transition: slide-left
 mdc: true
 ---
 
-# Welcome to Slidev
+# Mixture of Experts (MoE)
 
-Presentation slides for developers
+Exploiting Conditional Computation in Deep Learning
 
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Press Space for next page <carbon:arrow-right />
+<div class="pt-12">
+  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
+    Press Space for next page <carbon:arrow-right class="inline"/>
+  </span>
 </div>
 
-<div class="abs-br m-6 text-xl">
-  <button @click="$slidev.nav.openInEditor" title="Open in Editor" class="slidev-icon-btn">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
-</div>
 
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+---
+title: The Core Idea: Conditional Computation
+---
+
+# The Core Idea: Conditional Computation
+
+- **Problem:** Dense models activate **all** parameters for **every** input.
+
+- **Observation:** Models often store diverse, unrelated knowledge.
+  - *Example:* Knowledge of Portuguese language vs. React system code.
+  - *Question:* Why activate React knowledge when writing Portuguese poetry?
+
+- **Goal:** Activate only the relevant parts of the network for a given task or input.
+  - Like having specialized "experts" for different domains.
+
+---
+title: Why Conditional Computation?
+---
+
+# Why Conditional Computation?
+
+- **Theoretical Motivation:** Reduce unnecessary computation and parameter interference.
+
+- **Biomimicry:** The human brain uses specialized regions.
+  - Different areas activate depending on the task (language, vision, motor control, etc.).
+
+- **The Challenge:** Standard deep learning activates 100% of the network.
+  - We need a *mechanism* or *trick* to dynamically select parts of the model.
+
+- **This leads us to... Mixture of Experts!**
 
 ---
 transition: fade-out
