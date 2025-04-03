@@ -74,7 +74,7 @@ title: MoE Architecture
 
 # MoE Architecture
 
-![MoE Architecture](/public/images/moe-architecture.svg)
+![MoE Architecture](/public/images/moe-architecture.png)
 
 - **Expert Selection:** Input data passes through a router network that calculates "gating scores"
   - Only a small subset of experts (typically 1-2) are activated for each input
@@ -115,7 +115,7 @@ title: Pioneering MoE Research
 
 ## Sparsely-Gated Mixture-of-Experts Layer (2017)
 
-![OLNN Overview](/public/images/olnn-overview.svg)
+![OLNN Overview](/public/images/olnn-overview.png)
 
 - **Pioneering research** from Google Brain (before Transformers)
 - Scaled LSTM-based models to **137 billion parameters**
@@ -128,16 +128,16 @@ title: OLNN Key Innovations
 # Key MoE Innovations
 
 ## Differentiability Solution
-![Noisy Top-K Gating](/public/images/noisy-topk.svg)
+![Noisy Top-K Gating](/public/images/noisy-topk.png)
 - "Noisy Top-K Gating" mechanism providing stable gradients for expert selection
 
 ## Load Balancing
-![Load Balancing](/public/images/load-balancing.svg)
+![Load Balancing](/public/images/load-balancing.png)
 - Auxiliary loss functions to prevent collapse to a few experts
 - Ensured all experts were utilized effectively
 
 ## Architecture Optimization
-![Architecture](/public/images/architecture-opt.svg)
+![Architecture](/public/images/architecture-opt.png)
 - Efficiently handled computational challenges on GPU clusters
 - Each expert on a single GPU (model parallelism)
 - Common layers cloned across all GPUs (data parallelism)
@@ -175,7 +175,7 @@ title: DeepSeek-V3
 
 # DeepSeek-V3: Advanced MoE
 
-![DeepSeek Architecture](/public/images/deepseek-arch.svg)
+![DeepSeek Architecture](/public/images/deepseek-arch.png)
 
 - **671B parameter** MoE language model 
 - Activates only **37B parameters** per token
@@ -208,9 +208,9 @@ title: DeepSeek-V3 Implementation
 
 # DeepSeek-V3 Implementation
 
-![DeepSeek Code 1](/public/images/deepseek-code1.svg)
+![DeepSeek Code 1](/public/images/deepseek-code1.png)
 
-![DeepSeek Code 2](/public/images/deepseek-code2.svg)
+![DeepSeek Code 2](/public/images/deepseek-code2.png)
 
 ---
 title: MoE Resources
