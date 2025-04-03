@@ -74,7 +74,7 @@ title: MoE Architecture
 
 # MoE Architecture
 
-![MoE Architecture](https://github.com/user-attachments/assets/95e06bd2-e9e3-427d-8031-b8c0a50521d6)
+![MoE Architecture](/images/moe-architecture.svg)
 
 - **Expert Selection:** Input data passes through a router network that calculates "gating scores"
   - Only a small subset of experts (typically 1-2) are activated for each input
@@ -115,7 +115,7 @@ title: Pioneering MoE Research
 
 ## Sparsely-Gated Mixture-of-Experts Layer (2017)
 
-![OLNN Overview](https://github.com/user-attachments/assets/60382d90-e590-4a7d-a329-133b6505749d)
+![OLNN Overview](/images/olnn-overview.svg)
 
 - **Pioneering research** from Google Brain (before Transformers)
 - Scaled LSTM-based models to **137 billion parameters**
@@ -128,16 +128,16 @@ title: OLNN Key Innovations
 # Key MoE Innovations
 
 ## Differentiability Solution
-![Noisy Top-K Gating](https://github.com/user-attachments/assets/8ea3a3b2-9c23-4234-a7ef-b3ecf6a26c82)
+![Noisy Top-K Gating](/images/noisy-topk.svg)
 - "Noisy Top-K Gating" mechanism providing stable gradients for expert selection
 
 ## Load Balancing
-![Load Balancing](https://github.com/user-attachments/assets/90486fa5-8916-45da-af3b-ef1eeca1632c)
+![Load Balancing](/images/load-balancing.svg)
 - Auxiliary loss functions to prevent collapse to a few experts
 - Ensured all experts were utilized effectively
 
 ## Architecture Optimization
-![Architecture](https://github.com/user-attachments/assets/999c832d-8677-4f07-8f09-5ba9b8568598)
+![Architecture](/images/architecture-opt.svg)
 - Efficiently handled computational challenges on GPU clusters
 - Each expert on a single GPU (model parallelism)
 - Common layers cloned across all GPUs (data parallelism)
@@ -148,7 +148,7 @@ title: Modern MoE Models
 
 # Mixtral of Experts
 
-![Mixtral Architecture](https://github.com/user-attachments/assets/0a269540-d5fd-4075-bb0c-5b4efb391d9a)
+![Mixtral Architecture](/images/mixtral-arch.png)
 
 - **Sparse Mixture of Experts (SMoE)** language model by Mistral AI (2024)
 - **47B total parameters** but only activates **13B** during inference
@@ -162,7 +162,7 @@ title: Mixtral Implementation
 
 # Mixtral Implementation
 
-![Mixtral Code](https://github.com/user-attachments/assets/c3899adb-77fc-4e60-86d4-f71037864bce)
+![Mixtral Code](/images/mixtral-code.png)
 
 - Implementation in mistral-inference repository
 - Router network calculates scores for each expert
@@ -175,7 +175,7 @@ title: DeepSeek-V3
 
 # DeepSeek-V3: Advanced MoE
 
-![DeepSeek Architecture](https://github.com/user-attachments/assets/efc6efa0-8afb-4f03-8ce6-b9d2a53cc620)
+![DeepSeek Architecture](/images/deepseek-arch.svg)
 
 - **671B parameter** MoE language model 
 - Activates only **37B parameters** per token
@@ -208,9 +208,9 @@ title: DeepSeek-V3 Implementation
 
 # DeepSeek-V3 Implementation
 
-![DeepSeek Code 1](https://github.com/user-attachments/assets/06437d16-add9-47d3-bcac-0882d353e83e)
+![DeepSeek Code 1](/images/deepseek-code1.svg)
 
-![DeepSeek Code 2](https://github.com/user-attachments/assets/1cf948ba-57a6-4642-bcde-5b80546727a0)
+![DeepSeek Code 2](/images/deepseek-code2.svg)
 
 ---
 title: MoE Resources
