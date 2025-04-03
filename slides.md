@@ -46,6 +46,7 @@ title: The Core Idea: Conditional Computation
 
 - **Goal:** Activate only the relevant parts of the network for a given task or input.
   - Like having specialized "experts" for different domains.
+  - **Biomimicry:** MoE mimics how the human brain works, activating specialized neural circuits for specific tasks.
 
 ---
 title: Why Conditional Computation?
@@ -58,10 +59,174 @@ title: Why Conditional Computation?
 - **Biomimicry:** The human brain uses specialized regions.
   - Different areas activate depending on the task (language, vision, motor control, etc.).
 
+- **Efficiency:** Generalist models contain vast knowledge that's mostly unused for any specific task.
+  - When writing a poem, you don't need programming knowledge.
+  - MoE routes inputs only to relevant "expert" sub-networks.
+
 - **The Challenge:** Standard deep learning activates 100% of the network.
   - We need a *mechanism* or *trick* to dynamically select parts of the model.
 
 - **This leads us to... Mixture of Experts!**
+
+---
+title: MoE Architecture
+---
+
+# MoE Architecture
+
+![MoE Architecture](/images/moe-architecture.png)
+
+- **Expert Selection:** Input data passes through a router network that calculates "gating scores"
+  - Only a small subset of experts (typically 1-2) are activated for each input
+  - This is a form of conditional computation, making MoE models more efficient
+
+- **Parallel Processing:** Selected experts process the input independently
+  - Each expert specializes in different aspects of the task
+  - Inactive experts don't compute for the current input
+
+- **Combination:** Outputs from active experts are combined using weighted sum based on gating scores
+
+---
+title: MoE Advantages and Challenges
+---
+
+# MoE Advantages and Challenges
+
+## Advantages
+- Increased model capacity without proportional computational cost
+- Specialization of different experts for different types of tasks
+- More efficient training and inference
+- Active parameters vs. Total parameters
+  - Active: Only parameters used for specific input (subset)
+  - Total: All parameters in model, including inactive experts
+  - *Example:* Mixtral uses only 13B out of 47B total parameters per token
+
+## Challenges
+- Training instability issues
+- Expert utilization problems
+- Fine-tuning difficulties
+- Deployment challenges (compute is reduced, not memory!)
+
+---
+title: Pioneering MoE Research
+---
+
+# Outrageously Large Neural Networks
+
+## Sparsely-Gated Mixture-of-Experts Layer (2017)
+
+![OLNN Overview](/images/olnn-overview.png)
+
+- **Pioneering research** from Google Brain (before Transformers)
+- Scaled LSTM-based models to **137 billion parameters**
+- Solved key implementation challenges for practical MoE architectures
+
+---
+title: OLNN Key Innovations
+---
+
+# Key MoE Innovations
+
+## Differentiability Solution
+![Noisy Top-K Gating](/images/noisy-topk.png)
+- "Noisy Top-K Gating" mechanism providing stable gradients for expert selection
+
+## Load Balancing
+![Load Balancing](/images/load-balancing.png)
+- Auxiliary loss functions to prevent collapse to a few experts
+- Ensured all experts were utilized effectively
+
+## Architecture Optimization
+![Architecture](/images/architecture-opt.png)
+- Efficiently handled computational challenges on GPU clusters
+- Each expert on a single GPU (model parallelism)
+- Common layers cloned across all GPUs (data parallelism)
+
+---
+title: Modern MoE Models
+---
+
+# Mixtral of Experts
+
+![Mixtral Architecture](/images/mixtral-arch.png)
+
+- **Sparse Mixture of Experts (SMoE)** language model by Mistral AI (2024)
+- **47B total parameters** but only activates **13B** during inference
+- Router network selects only **2 out of 8 experts** per token at each layer
+- Expert routing correlates more with syntax than specific domains
+- Consecutive tokens often assigned to the same experts
+
+---
+title: Mixtral Implementation
+---
+
+# Mixtral Implementation
+
+![Mixtral Code](/images/mixtral-code.png)
+
+- Implementation in mistral-inference repository
+- Router network calculates scores for each expert
+- Top-k experts selected for processing
+- Weighted combination of expert outputs
+
+---
+title: DeepSeek-V3
+---
+
+# DeepSeek-V3: Advanced MoE
+
+![DeepSeek Architecture](/images/deepseek-arch.png)
+
+- **671B parameter** MoE language model 
+- Activates only **37B parameters** per token
+- Significant innovations in MoE architecture:
+  - Hybrid MoE with both routed and shared experts
+  - Each MoE layer: 1 shared expert + 256 routed experts
+  - Shared expert processes all tokens (reliability & fallback)
+
+---
+title: DeepSeek-V3 Innovations
+---
+
+# DeepSeek-V3: Load Balancing
+
+- **Auxiliary-Loss-Free MoE Load Balancing**
+  - Adds adjustable bias terms to expert selection scores during training
+  - Overused experts receive negative bias, underused ones positive bias
+  - Bias only affects expert selection, not output weighting
+  - Used during training, removed during inference
+  - Better performance and expert specialization
+
+- **Complementary sequence-wise auxiliary loss**
+  - Small penalty for highly imbalanced utilization within sequences
+  - Uses "extremely small" scaling factor to minimize impact
+  - Safeguard against pathological routing patterns
+
+---
+title: DeepSeek-V3 Implementation
+---
+
+# DeepSeek-V3 Implementation
+
+![DeepSeek Code 1](/images/deepseek-code1.png)
+
+![DeepSeek Code 2](/images/deepseek-code2.png)
+
+---
+title: MoE Resources
+---
+
+# MoE Resources
+
+## Papers
+- [Outrageously Large Neural Networks: The Sparsely-Gated...](https://arxiv.org/abs/1701.06538)
+- [Mixtral of Experts](https://arxiv.org/abs/2401.04088)
+- [DeepSeek-V3 Technical Report](https://arxiv.org/abs/2412.19437)
+
+## Blogs
+- [Mixtral of experts | Mistral AI](https://mistral.ai/fr/news/mixtral-of-experts)
+- [Mixture of Experts Explained](https://huggingface.co/blog/moe)
+- [Awesome-Efficient-MoE](https://github.com/pprp/Awesome-Efficient-MoE/blob/main/README.md)
 
 ---
 transition: fade-out
