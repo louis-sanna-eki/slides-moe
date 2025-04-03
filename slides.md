@@ -74,7 +74,7 @@ title: MoE Architecture
 
 # MoE Architecture
 
-![MoE Architecture](/images/moe-architecture.svg)
+![MoE Architecture](/public/images/moe-architecture.svg)
 
 - **Expert Selection:** Input data passes through a router network that calculates "gating scores"
   - Only a small subset of experts (typically 1-2) are activated for each input
@@ -115,7 +115,7 @@ title: Pioneering MoE Research
 
 ## Sparsely-Gated Mixture-of-Experts Layer (2017)
 
-![OLNN Overview](/images/olnn-overview.svg)
+![OLNN Overview](/public/images/olnn-overview.svg)
 
 - **Pioneering research** from Google Brain (before Transformers)
 - Scaled LSTM-based models to **137 billion parameters**
@@ -128,16 +128,16 @@ title: OLNN Key Innovations
 # Key MoE Innovations
 
 ## Differentiability Solution
-![Noisy Top-K Gating](/images/noisy-topk.svg)
+![Noisy Top-K Gating](/public/images/noisy-topk.svg)
 - "Noisy Top-K Gating" mechanism providing stable gradients for expert selection
 
 ## Load Balancing
-![Load Balancing](/images/load-balancing.svg)
+![Load Balancing](/public/images/load-balancing.svg)
 - Auxiliary loss functions to prevent collapse to a few experts
 - Ensured all experts were utilized effectively
 
 ## Architecture Optimization
-![Architecture](/images/architecture-opt.svg)
+![Architecture](/public/images/architecture-opt.svg)
 - Efficiently handled computational challenges on GPU clusters
 - Each expert on a single GPU (model parallelism)
 - Common layers cloned across all GPUs (data parallelism)
@@ -148,7 +148,7 @@ title: Modern MoE Models
 
 # Mixtral of Experts
 
-![Mixtral Architecture](/images/mixtral-arch.png)
+![Mixtral Architecture](/public/images/mixtral-arch.png)
 
 - **Sparse Mixture of Experts (SMoE)** language model by Mistral AI (2024)
 - **47B total parameters** but only activates **13B** during inference
@@ -162,7 +162,7 @@ title: Mixtral Implementation
 
 # Mixtral Implementation
 
-![Mixtral Code](/images/mixtral-code.png)
+![Mixtral Code](/public/images/mixtral-code.png)
 
 - Implementation in mistral-inference repository
 - Router network calculates scores for each expert
@@ -175,7 +175,7 @@ title: DeepSeek-V3
 
 # DeepSeek-V3: Advanced MoE
 
-![DeepSeek Architecture](/images/deepseek-arch.svg)
+![DeepSeek Architecture](/public/images/deepseek-arch.svg)
 
 - **671B parameter** MoE language model 
 - Activates only **37B parameters** per token
@@ -208,9 +208,9 @@ title: DeepSeek-V3 Implementation
 
 # DeepSeek-V3 Implementation
 
-![DeepSeek Code 1](/images/deepseek-code1.svg)
+![DeepSeek Code 1](/public/images/deepseek-code1.svg)
 
-![DeepSeek Code 2](/images/deepseek-code2.svg)
+![DeepSeek Code 2](/public/images/deepseek-code2.svg)
 
 ---
 title: MoE Resources
